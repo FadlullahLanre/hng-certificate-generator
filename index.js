@@ -69,7 +69,7 @@ app.post('/api/upload', upload.single("file"), (req, res) => {
                     console.log('DB Connected!');
                     dbConn = client.db();
 
-                    //inserting into the table "employees"
+                    //inserting into the table "certificate"
                     var collectionName = 'certificate';
                     var collection = dbConn.collection(collectionName);
                     collection.insertMany(csvData, (err, result) => {
@@ -97,7 +97,7 @@ app.post('/api/upload', upload.single("file"), (req, res) => {
     }
 });
 
-// Fetch all employees
+// Fetch all certificate
 app.get('/api/download', function (req, res) {
     // Establish connection to the database
     var url = "mongodb://localhost:27017/TestDb";
