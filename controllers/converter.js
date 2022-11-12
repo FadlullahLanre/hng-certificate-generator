@@ -4,7 +4,8 @@ const fs = require('fs');
 
 exports.converter = async (req, res) => {
     const file = req.file
-    const jsonArr = []
+    let jsonArr = []
+    let newArr
     correctFormat = true
     try {
         if (!file) {
@@ -19,10 +20,17 @@ exports.converter = async (req, res) => {
             }))
             .on("data", async (row) => {
                 jsonArr.push(row);
+
+                newArr = jsonArr.map(x => Object.fromEntries(Object.entries(x).map(
+                    ([key, value]) => [key.toLowerCase(), typeof value == 'string' ? value.toLowerCase() : value])));
+
+                console.log(newArr)
             })
             .on('end', function () {
-                jsonArr.every((row) => {
-                    if (!row.name || !row.organization || !row.award || !row.description || !row.date || !row.certificate_number) {
+                newArr.every((row) => {
+                    const { name, organization, award, description, date } = row
+
+                    if (!name || !organization || !award || !description || !date) {
                         correctFormat = false
                         return false
                     }
@@ -31,7 +39,7 @@ exports.converter = async (req, res) => {
                 if (!correctFormat) {
                     return res.json({ message: 'Input a file with correct format!!' })
                 }
-                res.send(jsonArr)
+                res.send(newArr)
             })
     }
 
