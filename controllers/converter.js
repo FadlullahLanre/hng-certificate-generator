@@ -24,7 +24,6 @@ exports.converter = async (req, res) => {
                 newArr = jsonArr.map(x => Object.fromEntries(Object.entries(x).map(
                     ([key, value]) => [key.toLowerCase(), typeof value == 'string' ? value.toLowerCase() : value])));
 
-                console.log(newArr)
             })
             .on('end', function () {
                 newArr.every((row) => {
