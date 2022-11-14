@@ -48,8 +48,9 @@ Start the server
 ```
 
 
-## Authors
+## Contributors
 
 - [@fadlullahlanre](https://github.com/FadlullahLanre)
 - [@abdulkabirSultan](https://github.com/abdulkabirsultan)
 - [@ubanilsaac](https://github.com/ubaniIsaac)
+- [@samad13](https://github.com/samad13)
